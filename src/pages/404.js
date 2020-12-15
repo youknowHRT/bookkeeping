@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Charts(){
+export default function noMatch(){
   return <div>
     <h1>
-      我是图标页面
+      404!!!
     </h1>
   </div>
 }
