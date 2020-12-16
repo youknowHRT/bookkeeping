@@ -1,4 +1,5 @@
 import React,{useEffect, useState} from 'react'
+import NumberPad from '../components/numberPad'
 import {Tabs,Input} from 'antd'
 import {
   EditOutlined
@@ -30,6 +31,7 @@ export default function CountMoney(){
     setBookList({...bookList,note:inputMsg})
     console.log("🚀 ~ file: countMoney.js ~ line 30 ~ handleInput ~ setBookList", setBookList)
   }
+  
   return <div>
     <div className="switchAddOrMinus">
       <Tabs activeKey={key}  onTabClick={handleTabs}>
@@ -50,9 +52,10 @@ export default function CountMoney(){
           </div>
         </TabPane>
       </Tabs>
+    </div>
+    <div className="note">
       <Input prefix={<EditOutlined/>} placeholder="写点备注吧" onChange={handleInput}/>
     </div>
-    <div className="note"></div>
-    <div className="numberpad"></div>
+    <NumberPad />
   </div>
 }
