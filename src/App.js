@@ -3,16 +3,11 @@ import CountMoney from './pages/countMoney'
 import General from './pages/general'
 import Charts from './pages/charts'
 import NoMatch from './pages/404'
+import Nav from './components/nav'
 import {
-  PayCircleOutlined,
-  AccountBookOutlined,
-  LineChartOutlined
-} from '@ant-design/icons'
-import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
-  Link,
   Redirect
 } from "react-router-dom";
 import styled from 'styled-components'
@@ -25,21 +20,10 @@ const Wrapper =styled.div`
   flex-direction:column
 `
 const Main=styled.div`
-  border:1px solid green;
   overflow:auto;
   flex:1
 `
-const Nav =styled.div`
-  border: 1px solid blue;
-  > ul {
-    display:flex;
-    >li{
-      width:33.33%;
-      text-align:center;
-      font-size:40px;
-    }
-  }
-`
+
 export default function App() {
   return (
     <Router>
@@ -63,19 +47,7 @@ export default function App() {
             </Route>
           </Switch>
         </Main>
-        <Nav>
-          <ul>
-            <li>
-              <Link to="/countMoney"><PayCircleOutlined /></Link>
-            </li>
-            <li>
-              <Link to="/general"><AccountBookOutlined /></Link>
-            </li>
-            <li>
-              <Link to="/charts"><LineChartOutlined /></Link>
-            </li>
-          </ul>
-        </Nav>
+        <Nav />
       </Wrapper>
     </Router>
   );
