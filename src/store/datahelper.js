@@ -54,4 +54,16 @@ export default class Datahelper {
     return false
     //返回boolean值表示删除结果
   }
+  dataConversion(getTime){
+  let week=['星期日','星期一','星期二','星期三','星期四','星期五','星期六']
+  let time=new Date(getTime)
+  let year =time.getFullYear()
+  let month =time.getMonth()+1
+  let day =time.getDate()
+  let dayNumber=time.getDay()//获取星期数字
+  let weekDay=week[dayNumber]  //获取星期$
+  let hours =time.getHours()
+  let minute =time.getMinutes()
+  return {year,month,day,weekDay,hours,minute}
+  }
 }

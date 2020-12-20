@@ -7,7 +7,7 @@ import {
 } from '@ant-design/icons'
 import 'antd/dist/antd.css'
 import {defaultExpenseTags,defaultIncomeTags} from '../store/iconList'
-import Icon from '../components/icon'
+// import Icon from '../components/icon'
 
 const {TabPane} =Tabs
 
@@ -19,7 +19,7 @@ export default function CountMoney(){
     moneyType: "-",
     amount:0,
     note:"",
-    tag:"",
+    tag:{name:"others",value:"其他"},
     createAt:"",
   })
   let [expenseTagList,setExpenseTagList]=useState(defaultExpenseTags)//获取支出图标列表
@@ -45,7 +45,7 @@ export default function CountMoney(){
       moneyType: "-",
       amount:"",
       note:"",
-      tag:"",
+      tag:{name:"others",value:"其他"},
       createAt:"",
     })
   }
