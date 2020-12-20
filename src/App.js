@@ -2,6 +2,7 @@ import React from "react";
 import CountMoney from './pages/countMoney'
 import General from './pages/general'
 import Charts from './pages/charts'
+import TotalLabel from './pages/totalLabel'
 import NoMatch from './pages/404'
 import Nav from './components/nav'
 import {
@@ -38,6 +39,9 @@ export default function App() {
             </Route>
             <Route path="/charts">
               <Charts />
+            </Route>
+            <Route path="/totalLabel">
+              <TotalLabel />
             </Route>
             <Route path="/">
               <Redirect to="/countMoney"/>
