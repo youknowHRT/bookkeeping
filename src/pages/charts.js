@@ -2,7 +2,7 @@ import React from 'react'
 import dayjs from 'dayjs'
 import Datahelper from '../store/datahelper'
 import {dateFormatter} from '../store/dateFormatter'
-
+import BarChart from '../components/charts/barChart'
 
 export default function Charts(){
   let db = new Datahelper('accountBook')
@@ -38,21 +38,29 @@ export default function Charts(){
     const expenseArr=[]
     const incomeArr=[]
     const dayOfMonthX=[]
-    for(let i=0;i<monthLastDay;i++){//初始化
-      expenseArr[i]=0
-      incomeArr[i]=0
-      dayOfMonthX[i]=i+1
-    }
-    console.log('expenseArr',expenseArr);
+    // for(let i=0;i<monthLastDay;i++){//初始化
+    //   expenseArr[i]=0
+    //   incomeArr[i]=0
+    //   dayOfMonthX[i]=i+1
+    // }
     for(let i=0;i<monthLastDay;i++){//遍历每天的总支出
+      dayOfMonthX[i]=i+1
+
       let eachDayCost=expenseList
       .filter(item=>{
         return parseInt(dayjs(item.createAt).format('DD'))===i
       })
       .map(item=>parseInt(item.amount))
       .reduce((i,j)=>{return i+j},0)
- 
-      expenseArr[i]=eachDayCost
+      expenseArr[i]=eachDayCost===0?'':eachDayCost
+
+      let eachDayIncome=incomeList
+      .filter(item=>{
+        return parseInt(dayjs(item.createAt).format('DD'))===i
+      })
+      .map(item=>parseInt(item.amount))
+      .reduce((i,j)=>{return i+j},0)
+      incomeArr[i]=eachDayIncome===0?'':eachDayCost
     }
     return {expenseArr,incomeArr,dayOfMonthX}
   }
@@ -66,6 +74,7 @@ export default function Charts(){
     <div>
       <span>本月总支出{monthLastDay}</span>
       <div>图表</div>
+      <BarChart value={arrAccount()}/>
     </div>
     <div>
       <span>本月分类占比</span>
