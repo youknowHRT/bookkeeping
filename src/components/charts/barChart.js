@@ -114,22 +114,22 @@ export default function BarChart(props){
       }
     ]
     };
+    myChart.setOption(option);
+    
     myChart.on("legendselectchanged",function(e){
-      // console.log(e);
       
-      for(var index = 0;index < option.legend.data.length;index++){
-          if ( e.name == option.legend.data[index]){
+      for(let i = 0;i < option.legend.data.length;i++){
+          if ( e.name === option.legend.data[i]){
             option.legend.selected[e.name] = true; //如果选中，则显示折线
           }else{
-            option.legend.selected[option.legend.data[index]] = false; // 将状态设置为未选中
+            option.legend.selected[option.legend.data[i]] = false; // 将状态设置为未选中
           }
       }
       e.name==="收入"?props.controller("+"):props.controller("-")
       myChart.setOption(option);
-  })
+    })
     // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(option);
-  })
+  },[])
   
   return <BarchartWrap id="barChart"/>
 

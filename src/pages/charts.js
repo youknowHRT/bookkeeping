@@ -22,7 +22,6 @@ export default function Charts(){
   const expenseList=filterLocalList.filter(item=>{//月度支出
     return item.moneyType==="-"
   })
-  console.log("🚀 ~ file: charts.js ~ line 23 ~ Charts ~ expenseList", expenseList)
   const incomeList=filterLocalList.filter(item=>{//月收入
     return item.moneyType==="+"
   })
@@ -85,7 +84,6 @@ export default function Charts(){
     
     return {tagCost,pureTagList}
   }
-    console.log("🚀 ~ file: charts.js ~ line 86 ~ eachTagCost ~ totalTagCost", eachTagCost())
   const [controller,setController]=useState(false)
   function controllerHandle(moneyType){
     moneyType==="+"?setController(true):setController(false)

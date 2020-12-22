@@ -9,7 +9,6 @@ const DoughnutWrap=styled.div`
   `
 export default function Doughnut(props){
   useEffect(()=>{
-    console.log(props);
     let container=document.getElementById('doughnut')
     container.style = `width: ${width}px;height:${height}px`;
     var myChart = echarts.init(container);
