@@ -1,8 +1,11 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import dayjs from 'dayjs'
 import Datahelper from '../store/datahelper'
 import {dateFormatter} from '../store/dateFormatter'
 import BarChart from '../components/charts/barChart'
+import Doughnut from '../components/charts/doughnut'
+import { useState } from 'react/cjs/react.development'
+// import styled from 'styled-components'
 
 export default function Charts(){
   let db = new Datahelper('accountBook')
@@ -34,15 +37,11 @@ export default function Charts(){
     }
     return {expense,income}
   }
-  const arrAccount=()=>{
+  const arrAccount=()=>{//这块数据是用于柱状图的
     const expenseArr=[]
     const incomeArr=[]
     const dayOfMonthX=[]
-    // for(let i=0;i<monthLastDay;i++){//初始化
-    //   expenseArr[i]=0
-    //   incomeArr[i]=0
-    //   dayOfMonthX[i]=i+1
-    // }
+
     for(let i=0;i<monthLastDay;i++){//遍历每天的总支出
       dayOfMonthX[i]=i+1
 
@@ -64,8 +63,33 @@ export default function Charts(){
     }
     return {expenseArr,incomeArr,dayOfMonthX}
   }
-  console.log("🚀 ~ file: charts.js ~ line 53 ~ arrAccount ~ arrAccount", arrAccount())
 
+  const eachTagCost=(e)=>{//这块数据是用于甜甜圈图表的
+    //获取所有的tag
+    let accountList=(e==="-"?expenseList:incomeList)
+    const tagCost=[]
+    let value=0
+    let name=""
+    let allExpenseTags=accountList.map(item=>{
+      return item.tag.value
+    })
+    const pureTagList=[...new Set(allExpenseTags)]//allExpenseTags就是我们获取的tag集合并且已经去重
+    for(let i=0;i<pureTagList.length;i++){
+      let arr=accountList.filter(item=>{
+        return item.tag.value===pureTagList[i]
+      })
+      value=arr.reduce((x,y)=>x+parseInt(y.amount),0)
+      name=pureTagList[i]
+      tagCost.push({value,name})
+    }
+    
+    return {tagCost,pureTagList}
+  }
+    console.log("🚀 ~ file: charts.js ~ line 86 ~ eachTagCost ~ totalTagCost", eachTagCost())
+  const [controller,setController]=useState(false)
+  function controllerHandle(moneyType){
+    moneyType==="+"?setController(true):setController(false)
+  }
 
   return <div>
     <h1>
@@ -73,12 +97,13 @@ export default function Charts(){
     </h1>
     <div>
       <span>本月总支出{monthLastDay}</span>
-      <div>图表</div>
-      <BarChart value={arrAccount()}/>
+      <BarChart value={arrAccount()} controller={controllerHandle} />
     </div>
     <div>
       <span>本月分类占比</span>
       <div>图表</div>
+      {controller===false?<Doughnut pureTagList={eachTagCost("-")} tagCost={eachTagCost("-")}/>:
+      <Doughnut pureTagList={eachTagCost("+")} tagCost={eachTagCost("+")}/>}
     </div>
   </div>
 }

@@ -1,17 +1,18 @@
 import echarts from 'echarts'
-import React,{useEffect} from 'react'
+import React,{useEffect,useState} from 'react'
 import styled from 'styled-components'
-export default function BarChart(props){
-  const width= document.documentElement.clientWidth
-  const height= document.documentElement.clientWidth*0.8
-  const BarchartWrap=styled.div`
-    height:${height}px;
-    width:${width}px;
-  `
-  useEffect(()=>{
-    var myChart = echarts.init(document.getElementById('barChart'));
-    // 指定图表的配置项和数据
+
+const width= document.documentElement.clientWidth
+const height= document.documentElement.clientWidth*0.8
+const BarchartWrap=styled.div`
     
+  `
+export default function BarChart(props){
+  useEffect(()=>{
+    let container=document.getElementById('barChart')
+    container.style = `width: ${width}px;height:${height}px`;
+    var myChart = echarts.init(container);
+    // 指定图表的配置项和数据
     var option = {
         // title: {
         //     text: 'ECharts 入门示例',
@@ -21,6 +22,7 @@ export default function BarChart(props){
         legend: {
             data:['支出','收入'],
             selected:{
+              '支出':true,
               '收入':false
             }
         },
@@ -89,7 +91,8 @@ export default function BarChart(props){
               }
           },
           barWidth: 5//设置柱子宽度，单位为px
-        },{
+        },
+        {
           name: '收入',
           type: 'bar',
           data: props.value.incomeArr,
@@ -108,9 +111,22 @@ export default function BarChart(props){
             }
         },
         barWidth: 5//设置柱子宽度，单位为px
-      }]
+      }
+    ]
     };
-  
+    myChart.on("legendselectchanged",function(e){
+      // console.log(e);
+      
+      for(var index = 0;index < option.legend.data.length;index++){
+          if ( e.name == option.legend.data[index]){
+            option.legend.selected[e.name] = true; //如果选中，则显示折线
+          }else{
+            option.legend.selected[option.legend.data[index]] = false; // 将状态设置为未选中
+          }
+      }
+      e.name==="收入"?props.controller("+"):props.controller("-")
+      myChart.setOption(option);
+  })
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
   })
