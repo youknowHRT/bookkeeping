@@ -1,46 +1,45 @@
-import React,{useEffect, useState} from 'react'
-import TagList from '../components/tagList'
+import React,{ useState} from 'react'
 import NumberPad from '../components/numberPad'
-import {Tabs,Input} from 'antd'
-import {
-  EditOutlined,
-} from '@ant-design/icons'
+import Tabs from '../components/tabs'
+import Input from '../components/note'
 import 'antd/dist/antd.css'
-import {defaultExpenseTags,defaultIncomeTags} from '../store/iconList'
+import styled from 'styled-components'
 // import Icon from '../components/icon'
 
-const {TabPane} =Tabs
-
-export default function CountMoney(){
-
-  const [key,setKey]=useState("1")
+const CountMoneyWrap=styled.div`
+  height:100%;
+  display:flex;
+  justify-content: center;
+  flex-direction:column;
+  .switchAddOrMinus{
+    flex:1
+  }
+`
+export default function CountMoney(){//初始数据结构
   let [bookList,setBookList]=useState({
     id:"",
     moneyType: "-",
-    amount:0,
+    amount:"",
     note:"",
-    tag:{name:"others",value:"其他"},
+    tag:{name:"food",value:"餐饮"},
     createAt:"",
   })
-  let [expenseTagList,setExpenseTagList]=useState(defaultExpenseTags)//获取支出图标列表
-  let [incomeTagList,setIncomeTagList]=useState(defaultIncomeTags)//获取收入图标列表
-  useEffect(()=>{
-  })
-  function handleTabs(key){//判断+/-类型
-    setKey(key)
-    let type = key==="1" ? "-" : "+"
-    setBookList({ ...bookList,moneyType:type})//注意此处...bookList
+
+  function handleTabs(type,defaultTag){//保存moneyType
+    setBookList(
+      Object.assign(bookList,{moneyType:type,tag:defaultTag})//解决useState不会自动合并更新对象的为题！！！！！
+    )
   }
-  function handleTag(tag){
+  function handleTag(tag){//保存tag
     setBookList({...bookList,tag:tag})
   }
-  function handleInput(e){//处理金额输入
-    //此处需要函数节流
+  function handleInput(e){//处理note
+    //此处可能需要函数节流
     let inputMsg=e.target.value
     setBookList({...bookList,note:inputMsg})
   }
-    function handleDefault(){
-      setBookList(bookList={
+  function handleDefault(){//初始化数据
+    setBookList(bookList={
       id:"",
       moneyType: "-",
       amount:"",
@@ -49,20 +48,13 @@ export default function CountMoney(){
       createAt:"",
     })
   }
-  return <div>
+  return <CountMoneyWrap>
     <div className="switchAddOrMinus">
-      <Tabs activeKey={key}  onTabClick={handleTabs}>
-        <TabPane tab="支出" key="1" >
-          <TagList tagList={expenseTagList} ifPushAddTag={true} handleTag={handleTag}/>
-        </TabPane>
-        <TabPane tab="收入" key="2">
-          <TagList tagList={incomeTagList} handleTag={handleTag}/>
-        </TabPane>
-      </Tabs>
+      <Tabs tagName={handleTag} moneyType={handleTabs}/>
     </div>
     <div className="note">
-      <Input prefix={<EditOutlined/>} placeholder="写点备注吧" onChange={handleInput} value={bookList.note}/>
+      <Input  handleInput={handleInput} value={bookList.note}/>
     </div>
-    <NumberPad value={bookList} handleDefault={handleDefault}/>
-  </div>
+    <NumberPad className="numberPad" value={bookList} handleDefault={handleDefault}/>
+  </CountMoneyWrap>
 }

@@ -1,56 +1,49 @@
-import {useState} from 'react'
-import styled from 'styled-components'
+import {useEffect, useState} from 'react'
 import Datahelper from '../store/datahelper'
+import './numberPad.scss'
 
-const NumberWrapper=styled.div`
-  .show{
-    display:flex
-  }
-  .buttonWrap{
-    border:1px solid red;
-    button{
-      width: 25%;
-      height: 64px;
-      float: left;
-      background: transparent;
-      border: none;
-      font-size: 20px;
-    }
-    .OK{
-      height:192px;
-      float:right
-    }
-  }
-`
 export default function NumberPad(props){
   let db =new Datahelper('accountBook')
   let [amount,setAmount]=useState("")
-  function editNumber(e){
-    let buttonContent =e.target.textContent
-    if(buttonContent==="删除"){
-      if (amount.length===0)return
-      setAmount(amount=amount.substring(0,amount.length-1))
-    }else if(buttonContent==="清零"){
-      setAmount(amount="")
-    }else if(buttonContent==='确认'){
-      if(amount==="0")return console.log('给我一个数字');
-      console.log('记录一笔账');
-      const newBookList={...props.value,amount}
-      console.log("🚀 ~ file: numberPad.js ~ line 39 ~ editNumber ~ newBookList", newBookList)
-      db.addData(newBookList)
-      props.handleDefault()
-      setAmount("")
-    }else{
-      setAmount(amount.concat(buttonContent))
+  useEffect(()=>{
+    const buttons=document.querySelectorAll("div.buttonWrap>button")//获取的是node对象，不是数组
+    for(let i=0;i<buttons.length;i++){//必须遍历button挨个添加点击事件，不然点到div上会打印全部的键盘字符
+      buttons[i].onclick= function (e){
+        let buttonContent =e.target.textContent
+        if(buttonContent==="删除"){
+          if (amount.length===0)return
+          setAmount(amount=amount.substring(0,amount.length-1))
+        }else if(buttonContent==="清零"){
+          setAmount(amount="")
+        }else if(buttonContent==='确认'){
+          if(amount==="0")return console.log('给我一个数字');
+          console.log('记录一笔账');
+          const newBookList={...props.value,amount}
+          console.log("🚀 ~ file: numberPad.js ~ line 39 ~ editNumber ~ newBookList", newBookList)
+          db.addData(newBookList)
+          props.handleDefault()
+          setAmount("")
+        }else{
+          if(amount.length<16)return setAmount(amount.concat(buttonContent))
+        }
+      }
     }
-  }
-  return <NumberWrapper >
+  })
+
+  const buttonArr=['1','2','3','删除','4','5','6','确认','7','8','9','清零','0',"."]
+  const buttons=[]
+  buttonArr.map((item,index)=>{
+    let button= <button key={index} className={item==='确认'?'OK':''}>{item}</button>
+    return buttons.push(button)
+  })
+  return <div className="numberPad">
     <div className="show">
-      <div>金额</div>
-      <div>{amount}</div>
+      <div className="show-string">金额</div>
+      <div className="show-number">{amount}</div>
     </div>
-    <div className="buttonWrap" onClick={editNumber}>
-      <button>1</button>
+    <div className="buttonWrap" >
+      {buttons}
+      {/* <button>1</button>
       <button>2</button>
       <button>3</button>
       <button>删除</button>
@@ -63,7 +56,7 @@ export default function NumberPad(props){
       <button>9</button>
       <button>清零</button>
       <button>0</button>
-      <button>.</button>
+      <button>.</button> */}
     </div>
-  </NumberWrapper>
+  </div>
 }

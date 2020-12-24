@@ -1,0 +1,32 @@
+.general{
+  height:100%;
+  &-head{
+    font-size:20px;
+    padding:15px;
+    background:#ffda47;
+  }
+  &-body{
+    &-list{
+      margin:0;
+      li{
+        padding:0 10px;
+        margin-bottom: 5px;
+        border: 1px solid red;
+        border-radius: 4px;
+        display:flex;
+        height: 3.3em;
+        line-height: 3.3em;
+        justify-content: space-between;
+        font-size: 16px;
+        .iconWrap{
+          .iconfont{
+            font-size:2em;
+          }
+        }
+        &:last-child{
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}

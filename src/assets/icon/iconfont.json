@@ -6,6 +6,41 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "767493",
+      "name": "银行卡",
+      "font_class": "salary",
+      "unicode": "e66c",
+      "unicode_decimal": 58988
+    },
+    {
+      "icon_id": "11690687",
+      "name": "红包",
+      "font_class": "cash-gift",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    },
+    {
+      "icon_id": "3978309",
+      "name": "备注",
+      "font_class": "note",
+      "unicode": "e648",
+      "unicode_decimal": 58952
+    },
+    {
+      "icon_id": "14095247",
+      "name": "向左",
+      "font_class": "left",
+      "unicode": "e77a",
+      "unicode_decimal": 59258
+    },
+    {
+      "icon_id": "14465067",
+      "name": "delete",
+      "font_class": "delete",
+      "unicode": "e66a",
+      "unicode_decimal": 58986
+    },
+    {
       "icon_id": "970748",
       "name": "其他",
       "font_class": "others",
@@ -34,13 +69,6 @@
       "unicode_decimal": 58915
     },
     {
-      "icon_id": "484506",
-      "name": "salary",
-      "font_class": "salary",
-      "unicode": "e62c",
-      "unicode_decimal": 58924
-    },
-    {
       "icon_id": "1079473",
       "name": "兼职",
       "font_class": "part-time-job",
@@ -60,13 +88,6 @@
       "font_class": "reimbursement",
       "unicode": "e66f",
       "unicode_decimal": 58991
-    },
-    {
-      "icon_id": "12664869",
-      "name": "礼金",
-      "font_class": "cash-gift",
-      "unicode": "e610",
-      "unicode_decimal": 58896
     },
     {
       "icon_id": "508245",
