@@ -1,10 +1,8 @@
 import echarts from 'echarts'
 import React, { useEffect } from 'react'
-import styled from 'styled-components'
 
 const width = document.documentElement.clientWidth
-const height = document.documentElement.clientWidth * 0.8
-const BarchartWrap = styled.div``
+const height = document.documentElement.clientWidth * 0.7
 
 export default function BarChart(props) {
   // const { expenseArr, incomeArr, dayOfMonthX } = props.value
@@ -25,6 +23,8 @@ export default function BarChart(props) {
           支出: true,
           收入: false,
         },
+        itemWidth:40,
+        itemHeight:25
       },
       grid: {
         x: 15,
@@ -105,12 +105,12 @@ export default function BarChart(props) {
           itemStyle: {
             normal: {
               barBorderRadius: [20, 10, 0, 0],
-              color: '#FD6B71', //设置柱子颜色
+              color: '#5aa469', //设置柱子颜色
               label: {
                 show: true, //柱子上显示值
                 position: 'top', //值在柱子上方显示
                 textStyle: {
-                  color: '#FD6B71', //值得颜色
+                  color: '#5aa469', //值得颜色
                 },
               },
             },
@@ -135,5 +135,5 @@ export default function BarChart(props) {
     // 使用刚指定的配置项和数据显示图表。
   }, [])
 
-  return <BarchartWrap id="barChart" />
+  return <div id="barChart" />
 }

@@ -1,0 +1,24 @@
+.chart{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  background: #ccc;
+  >span{
+    font-size:20px;
+    padding:15px;
+    background:#ffda47;
+    display:flex;
+    line-height: 1.5;
+  }
+  &-bar{
+    height:46%;
+    background: #fff;
+  }
+  &-doughnut{
+    height:46%;
+    background: #fff;
+    bottom:0;
+    left:0
+  }
+}

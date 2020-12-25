@@ -39,14 +39,17 @@ export default function CountMoney(){//初始数据结构
     setBookList({...bookList,note:inputMsg})
   }
   function handleDefault(){//初始化数据
-    setBookList(bookList={
-      id:"",
-      moneyType: "-",
-      amount:"",
-      note:"",
-      tag:{name:"others",value:"其他"},
-      createAt:"",
-    })
+    console.log(bookList,'.....');
+    setBookList({...bookList,note:""})
+    // setBookList(bookList={
+    //   id:"",
+    //   moneyType: "-",
+    //   amount:"",
+    //   note:"",
+    //   tag:{name:"others",value:"其他"},
+    //   createAt:"",
+    // })
+    console.log(bookList,'lllll');
   }
   return <CountMoneyWrap>
     <div className="switchAddOrMinus">

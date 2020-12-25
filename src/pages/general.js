@@ -5,22 +5,41 @@ import './general.scss'
 
 export default function General(){
   let db =new Datahelper('accountBook')
-  const localList=db.readData()
+  const localList=db.readData().reverse()
   const myAccountList=[]
+  const totalMoneyOfTag=(type)=>{//按照moneyType计算支出和收入
+    let value=localList.filter(item=>{
+      return item.moneyType===type
+    }).reduce((sum,i)=>{return sum+parseInt(i.amount)},0)
+    return value
+  }
   localList.map((item,index)=>{
-    let dataMsg=db.dataConversion(item.createAt)
     let date=new Date(item.createAt).toLocaleDateString()
+    let amount=item.moneyType==="-"? -item.amount:item.amount
     let li =<li key={index}>
-      <span className="iconWrap">
+      <div className="iconWrapper">
         <Icon name={item.tag.name}></Icon>
-      </span>
-      <span>{item.tag.value}</span>
-      <span>{date}</span>
+        <span>{item.tag.value}</span>
+      </div>
+      <div className="moneyAndDate">
+        <span className="moneyAndDate-money">￥{amount}</span>
+        <span className="moneyAndDate-date">{date}</span>
+      </div>
     </li>
     return myAccountList.push(li)
   })
   return <div className="general">
-    <div className="general-head">全部收支</div>
+    <div className="general-head">
+      <span>全部收支 |</span>
+      <div className="general-head-block">
+        <span className="general-head-block-word">收入</span>
+        <span className="general-head-block-number">￥{totalMoneyOfTag("+")}</span>
+      </div>
+      <div className="general-head-block">
+        <span className="general-head-block-word">支出</span>
+        <span className="general-head-block-number">￥{totalMoneyOfTag("-")}</span>
+      </div>
+    </div>
     <div className="general-body">
       <ul className="general-body-list">
         {myAccountList}

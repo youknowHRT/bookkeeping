@@ -1,6 +1,6 @@
 import React from 'react'
 export default function TotalLabel(){
   return <div>
-    这是图标总表
+    <h1>icon列表正在开发中</h1>
   </div>
 }

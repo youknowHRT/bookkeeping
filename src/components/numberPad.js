@@ -16,7 +16,7 @@ export default function NumberPad(props){
         }else if(buttonContent==="清零"){
           setAmount(amount="")
         }else if(buttonContent==='确认'){
-          if(amount==="0")return console.log('给我一个数字');
+          if(amount==="0"||amount==="")return console.log('给我一个数字');
           console.log('记录一笔账');
           const newBookList={...props.value,amount}
           console.log("🚀 ~ file: numberPad.js ~ line 39 ~ editNumber ~ newBookList", newBookList)

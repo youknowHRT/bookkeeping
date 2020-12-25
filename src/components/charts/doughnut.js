@@ -1,12 +1,10 @@
 import echarts from 'echarts'
 import React,{useEffect} from 'react'
-import styled from 'styled-components'
+import ReactDOM from 'react-dom'
+
 
 const width= document.documentElement.clientWidth
-const height= document.documentElement.clientWidth*0.8
-const DoughnutWrap=styled.div`
-    
-  `
+const height= document.documentElement.clientWidth*0.7
 export default function Doughnut(props){
   useEffect(()=>{
     let container=document.getElementById('doughnut')
@@ -18,32 +16,34 @@ export default function Doughnut(props){
         trigger: 'item',
         formatter: '{a} <br/>{b}: {c} ({d}%)'
       },
-      legend: {
-        orient: 'vertical',
-        left: 10,
-        data: props.pureTagList.pureTagList
-      },
       series: [
         {
           name: '访问来源',
           type: 'pie',
-          radius: ['50%', '70%'],
-          avoidLabelOverlap: false,
+          radius: ['45%', '75%'],
           label: {
-            show: false,
-            position: 'center'
+            show: true,
+            position: 'center',
           },
-          emphasis: {
-            label: {
-              show: true,
-              fontSize: '30',
-              fontWeight: 'bold'
-            }
+          itemStyle: {
+              normal:{
+                  label:{
+                      show:true,
+                      textStyle:{color:'#3c4858',fontSize:"14"},
+                      formatter:function(val){   
+                          return val.name.split("-").join("\n");}
+                  },//饼图图形上的文本标签，可用于说明图形的一些数据信息，比如值，名称等。可以与itemStyle属性同级，具体看文档
+                  //线条颜色
+              },//基本样式
+              emphasis: {
+                  shadowBlur: 10,
+                  shadowOffsetX: 0,
+                  shadowColor: 'rgba(0, 0, 0, 0.5)',//鼠标放在区域边框颜色
+                  textColor:'#000'
+              }//鼠标放在各个区域的样式
           },
-          labelLine: {
-            show: false
-          },
-          data: props.tagCost.tagCost
+          data: props.tagCost.tagCost,
+          color:['#0E7CE2', '#FF8352', '#E271DE', '#F8456B', '#00FFFF', '#4AEAB0',"#503EFF","#733DFF","#966EFF"],
         }
       ]
     };
@@ -52,6 +52,6 @@ export default function Doughnut(props){
     myChart.setOption(option);
   })
   
-  return <DoughnutWrap id="doughnut"/>
+  return <div id="doughnut" style={{height:'272px'}}/>
 
 }

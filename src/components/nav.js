@@ -1,41 +1,34 @@
-import styled from 'styled-components'
 import {Link} from 'react-router-dom'
-import {
-  PayCircleOutlined,
-  AccountBookOutlined,
-  LineChartOutlined
-} from '@ant-design/icons'
+import Icon from './icon'
+import { useState } from 'react'
+import './nav.scss'
 
-const NavWrapper =styled.div`
-  box-shadow:0 0 3px rgba(0,0,0,0.25);
-  font-size:12px;
-  > ul {
-    display:flex;
-    >li{
-      width:33.33%;
-      text-align:center;
-      >a{
-        display:flex;
-        flex-direction:column;
-        .navIcon{
-          font-size:3em
-        }
-      }
-    }
-  }
-`
  export default function Nav(){
-  return <NavWrapper>
+   const addressList=["/countMoney","/general","/charts"]
+   const navIcons=[{name:'money',value:'记账'},{name:'bookkeeping',value:'本月概况'},{name:'charts',value:'图表'}]
+   const navList=[]
+   const [clickIndex,setClickIndex]=useState(0)
+   addressList.map((item,index)=>{
+     let li = <li key={index} >
+       <Link to={item}
+        onClick={()=>navClickHandle(item)}
+        className={clickIndex===index?"active":''}
+       >
+        <Icon name={navIcons[index].name} />
+        {clickIndex===index?<span className={'showWord'}>
+          {navIcons[index].value}
+        </span>:null}
+       </Link>
+     </li>
+     return navList.push(li)
+   })
+  function navClickHandle(item){
+    let index=addressList.indexOf(item)
+    setClickIndex(index)
+  }
+  return <div className="navWrapper">
     <ul>
-      <li>
-        <Link to="/countMoney"><PayCircleOutlined className="navIcon"/>记账</Link>
-      </li>
-      <li>
-        <Link to="/general"><AccountBookOutlined className="navIcon"/>本月概况</Link>
-      </li>
-      <li>
-        <Link to="/charts"><LineChartOutlined className="navIcon"/>图表</Link>
-      </li>
-  </ul>
-  </NavWrapper>
+      {navList}
+    </ul>
+  </div>
 }

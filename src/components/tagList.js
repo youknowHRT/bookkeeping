@@ -15,7 +15,7 @@ const TagListWrap = styled.ul`
     flex-direction:column;
     font-size: 12px;
     margin-top:2em;
-    .iconWrap{
+    .iconWrapper{
       height:4em;
       width:4em;
       border-radius:50%;
@@ -40,6 +40,7 @@ export default function TagList(props) {
   const [iconSelect,setIconSelect]=useState(0)//选中tag的index值
   const labelUsed = []
   function chooseTag(item) {
+    console.log(item);
     let index=iconChoosed.indexOf(item)
     setIconSelect(index)
     props.handleTag(item)
@@ -52,7 +53,7 @@ export default function TagList(props) {
   iconChoosed.map((item, index) => {
     let div = (
       <li key={index} onClick={() => chooseTag(item)}>
-        <div className={`iconWrap ${iconSelect===index?"selected":""}`}  >
+        <div className={`iconWrapper ${iconSelect===index?"selected":""}`}  >
           <Icon name={item.name} />
         </div>
         <span>{item.value}</span>
@@ -67,7 +68,7 @@ export default function TagList(props) {
       {/* 这是为支出列表添加标签的 */}
       {props.ifPushAddTag ? (
         <li onClick={() => history.push('/totalLabel')}>
-          <div className="iconWrap" >
+          <div className="iconWrapper" >
             <Icon name="addTag" />
           </div>
           <span>添加</span>

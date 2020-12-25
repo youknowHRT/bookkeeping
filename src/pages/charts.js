@@ -5,7 +5,7 @@ import { dateFormatter } from '../store/dateFormatter'
 import BarChart from '../components/charts/barChart'
 import Doughnut from '../components/charts/doughnut'
 import { useState } from 'react/cjs/react.development'
-// import styled from 'styled-components'
+import './charts.scss'
 
 export default function Charts() {
   let db = new Datahelper('accountBook')
@@ -27,17 +27,14 @@ export default function Charts() {
     //月收入
     return item.moneyType === '+'
   })
-  const totalAccount = () => {
+  const totalAccountByType = (e) => {
     //支出和花费的月度总额
-    let expense = 0
-    let income = 0
-    for (let i = 0; i < expenseList.length; i++) {
-      expense += parseFloat(expenseList[i].amount)
+    let accountList = e === '-' ? expenseList : incomeList
+    let totalAccountByType=0
+    for (let i = 0; i < accountList.length; i++) {
+      totalAccountByType += parseFloat(accountList[i].amount)
     }
-    for (let i = 0; i < incomeList.length; i++) {
-      income += parseFloat(incomeList[i].amount)
-    }
-    return { expense, income }
+    return totalAccountByType
   }
   const arrAccount = () => {
     //这块数据是用于柱状图的
@@ -79,16 +76,19 @@ export default function Charts() {
     const tagCost = []
     let value = 0
     let name = ''
-    let allExpenseTags = accountList.map((item) => {
+    let totalValueByType=totalAccountByType(e)//拿到收入或者支出的总值
+    let allSameTypeTags = accountList.map((item) => {
       return item.tag.value
     })
-    const pureTagList = [...new Set(allExpenseTags)] //allExpenseTags就是我们获取的tag集合并且已经去重
+    const pureTagList = [...new Set(allSameTypeTags)] //allSameTypeTags就是我们获取的tag集合并且已经去重
     for (let i = 0; i < pureTagList.length; i++) {
       let arr = accountList.filter((item) => {
         return item.tag.value === pureTagList[i]
       })
-      value = arr.reduce((x, y) => x + parseInt(y.amount), 0)
-      name = pureTagList[i]
+      value=arr.reduce((x, y) => x + parseInt(y.amount), 0)//拿到每项的总值
+      let percentValue=(value/totalValueByType*100).toFixed(2)
+
+      name = percentValue.toString()+'%-'+pureTagList[i]
       tagCost.push({ value, name })
     }
 
@@ -101,19 +101,16 @@ export default function Charts() {
   }
 
   return (
-    <div>
-      <h1>{/* 我是图表页面{filterLocalList} */}</h1>
-      <div>
-        <span>本月总支出{monthLastDay}</span>
+    <div className="chart">
+      <span>{dayjs().month()+1}月总支出</span>
+      <div className="chart-bar">
         <BarChart value={arrAccount()} controller={controllerHandle} />
       </div>
-      <div>
-        <span>本月分类占比</span>
-        <div>图表</div>
+      <div className="chart-doughnut">
         {controller === false ? (
-          <Doughnut pureTagList={eachTagCost('-')} tagCost={eachTagCost('-')} />
+          <Doughnut pureTagList={eachTagCost('-')} tagCost={eachTagCost('-') }/>
         ) : (
-          <Doughnut pureTagList={eachTagCost('+')} tagCost={eachTagCost('+')} />
+          <Doughnut pureTagList={eachTagCost('+')} tagCost={eachTagCost('+')}/>
         )}
       </div>
     </div>
