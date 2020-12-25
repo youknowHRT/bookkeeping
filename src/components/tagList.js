@@ -40,7 +40,6 @@ export default function TagList(props) {
   const [iconSelect,setIconSelect]=useState(0)//选中tag的index值
   const labelUsed = []
   function chooseTag(item) {
-    console.log(item);
     let index=iconChoosed.indexOf(item)
     setIconSelect(index)
     props.handleTag(item)
