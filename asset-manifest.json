@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/bookkeeping/static/css/main.709b8203.chunk.css",
+    "main.js": "/bookkeeping/static/js/main.39e9c0f3.chunk.js",
+    "main.js.map": "/bookkeeping/static/js/main.39e9c0f3.chunk.js.map",
+    "runtime-main.js": "/bookkeeping/static/js/runtime-main.6744235c.js",
+    "runtime-main.js.map": "/bookkeeping/static/js/runtime-main.6744235c.js.map",
+    "static/css/2.63c3720a.chunk.css": "/bookkeeping/static/css/2.63c3720a.chunk.css",
+    "static/js/2.12b387c8.chunk.js": "/bookkeeping/static/js/2.12b387c8.chunk.js",
+    "static/js/2.12b387c8.chunk.js.map": "/bookkeeping/static/js/2.12b387c8.chunk.js.map",
+    "static/js/3.f727c2f3.chunk.js": "/bookkeeping/static/js/3.f727c2f3.chunk.js",
+    "static/js/3.f727c2f3.chunk.js.map": "/bookkeeping/static/js/3.f727c2f3.chunk.js.map",
+    "index.html": "/bookkeeping/index.html",
+    "static/css/2.63c3720a.chunk.css.map": "/bookkeeping/static/css/2.63c3720a.chunk.css.map",
+    "static/css/main.709b8203.chunk.css.map": "/bookkeeping/static/css/main.709b8203.chunk.css.map",
+    "static/js/2.12b387c8.chunk.js.LICENSE.txt": "/bookkeeping/static/js/2.12b387c8.chunk.js.LICENSE.txt",
+    "static/media/iconfont.css": "/bookkeeping/static/media/iconfont.fde4e52b.eot"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6744235c.js",
+    "static/css/2.63c3720a.chunk.css",
+    "static/js/2.12b387c8.chunk.js",
+    "static/css/main.709b8203.chunk.css",
+    "static/js/main.39e9c0f3.chunk.js"
+  ]
+}
