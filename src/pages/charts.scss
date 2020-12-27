@@ -12,11 +12,12 @@
     line-height: 1.5;
   }
   &-bar{
-    height:46%;
+    // height:46%;
     background: #fff;
+    flex:1
   }
   &-doughnut{
-    height:46%;
+    // height:46%;
     background: #fff;
     bottom:0;
     left:0

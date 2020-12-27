@@ -1,7 +1,5 @@
 import echarts from 'echarts'
 import React,{useEffect} from 'react'
-import ReactDOM from 'react-dom'
-
 
 const width= document.documentElement.clientWidth
 const height= document.documentElement.clientWidth*0.7
@@ -42,7 +40,7 @@ export default function Doughnut(props){
                   textColor:'#000'
               }//鼠标放在各个区域的样式
           },
-          data: props.tagCost.tagCost,
+          data: props.pureTagList.tagCost,
           color:['#0E7CE2', '#FF8352', '#E271DE', '#F8456B', '#00FFFF', '#4AEAB0',"#503EFF","#733DFF","#966EFF"],
         }
       ]
@@ -52,6 +50,6 @@ export default function Doughnut(props){
     myChart.setOption(option);
   })
   
-  return <div id="doughnut" style={{height:'272px'}}/>
+  return <div id="doughnut"/>
 
 }

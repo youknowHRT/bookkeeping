@@ -14,7 +14,7 @@ export default function NumberPad(props){
           if (amount.length===0)return
           setAmount(amount=amount.substring(0,amount.length-1))
         }else if(buttonContent==="清零"){
-          setAmount(amount="")
+          setAmount("")
         }else if(buttonContent==='确认'){
           if(amount==="0"||amount==="")return console.log('给我一个数字');
           console.log('记录一笔账');

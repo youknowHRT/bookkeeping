@@ -1,10 +1,9 @@
-import React from 'react'
+import React,{ useState } from 'react'
 import dayjs from 'dayjs'
 import Datahelper from '../store/datahelper'
 import { dateFormatter } from '../store/dateFormatter'
 import BarChart from '../components/charts/barChart'
 import Doughnut from '../components/charts/doughnut'
-import { useState } from 'react/cjs/react.development'
 import './charts.scss'
 
 export default function Charts() {
@@ -94,6 +93,7 @@ export default function Charts() {
 
     return { tagCost, pureTagList }
   }
+
   const [controller, setController] = useState(false)
   function controllerHandle(moneyType) {
     //用于bar和pie图表支出和收入的数据联动
@@ -108,9 +108,9 @@ export default function Charts() {
       </div>
       <div className="chart-doughnut">
         {controller === false ? (
-          <Doughnut pureTagList={eachTagCost('-')} tagCost={eachTagCost('-') }/>
+          <Doughnut pureTagList={eachTagCost('-')}/>
         ) : (
-          <Doughnut pureTagList={eachTagCost('+')} tagCost={eachTagCost('+')}/>
+          <Doughnut pureTagList={eachTagCost('+')}/>
         )}
       </div>
     </div>
