@@ -18,8 +18,9 @@ git add -A
 git commit -m 'deploy'
 
 ### 如果你想要部署到 https://USERNAME.github.io
-git remote add origin git@gitee.com:youknowhrt/keep-accounts.git
-git push -f origin master 
+# git remote add origin git@gitee.com:youknowhrt/keep-accounts.git
+git remote add origin git@gitee.com:youknowHRT/bookkeeping.git
+git push -f origin dist 
 # git push -u origin master
 # git push -f git@github.com:youknowHRT/blog.git master
 # git push -f git@gitee.com:youknowhrt/blog.git master
