@@ -4,7 +4,7 @@ import General from './pages/general'
 import Charts from './pages/charts'
 import TotalLabel from './pages/totalLabel'
 import NoMatch from './pages/404'
-import Nav from './components/nav'
+import Edit from './pages/edit'
 import {
   HashRouter as Router,
   Switch,
@@ -33,8 +33,7 @@ export default function App() {
             <Route path="/countMoney">
               <CountMoney />
             </Route>
-            <Route path="/general">
-              <General />
+            <Route exact path="/general" component={General}>
             </Route>
             <Route path="/charts">
               <Charts />
@@ -42,6 +41,7 @@ export default function App() {
             <Route path="/totalLabel">
               <TotalLabel />
             </Route>
+            <Route path="/edit/:id" component={Edit}/>
             <Route path="/">
               <Redirect to="/countMoney"/>
             </Route>
@@ -50,7 +50,7 @@ export default function App() {
             </Route>
           </Switch>
         </Main>
-        <Nav />
+        {/* <Nav /> */}
       </Wrapper>
     </Router>
   );

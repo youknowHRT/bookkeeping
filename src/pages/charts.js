@@ -4,6 +4,7 @@ import Datahelper from '../store/datahelper'
 import { dateFormatter } from '../store/dateFormatter'
 import BarChart from '../components/charts/barChart'
 import Doughnut from '../components/charts/doughnut'
+import Nav from '../components/nav'
 import './charts.scss'
 
 export default function Charts() {
@@ -112,6 +113,9 @@ export default function Charts() {
         ) : (
           <Doughnut pureTagList={eachTagCost('+')}/>
         )}
+      </div>
+      <div className="navWrap">
+        <Nav/>
       </div>
     </div>
   )

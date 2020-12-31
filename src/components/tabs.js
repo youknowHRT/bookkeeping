@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
 import TagList from './tagList'
-import {defaultExpenseTags,defaultIncomeTags} from '../store/iconList'
+import {defaultIncomeTags} from '../store/iconList'
 import styled from 'styled-components'
+import LabelDatahelper from '../store/labelDatahelper'
 
 const TabsWrap =styled.div`
+  height:100%;
+  // display:flex;
+  // flex-direction:column;
   .tabBar{
     display:flex;
     justify-content:center;
@@ -30,13 +34,16 @@ const TabsWrap =styled.div`
     }
   }
   .tabBar-taglist{
-    flex:1
+    height:82%;
+    overflow:auto;
   }
 `
 export default function Tabs(props) {
+  const ldb=new LabelDatahelper('labelRecord')
+  const expenseTagList=ldb.readData().flat().filter((item)=>item.choose===true)
   const [navBarType,setNavBarType]=useState(true)
-  const [expenseTagList,setExpenseTagList]=useState(defaultExpenseTags)//获取支出图标列表
-  const [incomeTagList,setIncomeTagList]=useState(defaultIncomeTags)//获取收入图标列表
+  //如果在这获取支出图标列表，会导致useEffect触发两次事件，暂时先在子组件获取吧
+  const incomeTagList=defaultIncomeTags//获取收入图标列表
   function navbarHandle(e) {//获取moneyType
     let value = e==="-"?true:false
     setNavBarType(value)//选择tag列表
@@ -55,7 +62,7 @@ export default function Tabs(props) {
       </div>
       <div className="tabBar-taglist">
         {navBarType? (
-          <TagList tagList={expenseTagList} handleTag={handleTag} ifPushAddTag/>
+          <TagList handleTag={handleTag} ifPushAddTag/>
         ) : (
           <TagList tagList={incomeTagList} handleTag={handleTag}/>
         )}

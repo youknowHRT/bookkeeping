@@ -1,42 +1,14 @@
 import React,{useState,useEffect} from 'react'
 import Icon from './icon'
 import { useHistory } from 'react-router-dom'
-import styled from 'styled-components'
+import './tagList.scss'
+import LabelDatahelper from '../store/labelDatahelper'
 
-const TagListWrap = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  li {
-    width: 25%;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction:column;
-    font-size: 12px;
-    margin-top:2em;
-    .iconWrapper{
-      height:4em;
-      width:4em;
-      border-radius:50%;
-      display:flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction:column;
-      background: #f5f5f5;
-      margin-bottom: 4px;
-      &.selected {
-        background: #ffda47;
-      }
-      .iconfont{
-        font-size:3.3em;
-      }
-    }
-  }
-`
 export default function TagList(props) {
-  let history = useHistory()
-  let iconChoosed = props.tagList
+  const ldb=new LabelDatahelper('labelRecord')
+  const expenseTagList=ldb.readData().flat().filter((item)=>item.choose===true)
+  const history = useHistory()
+  let iconChoosed = props.tagList?props.tagList:expenseTagList
   const [iconSelect,setIconSelect]=useState(0)//选中tag的index值
   const labelUsed = []
   function chooseTag(item) {
@@ -50,19 +22,18 @@ export default function TagList(props) {
   },[props.tagList])
 
   iconChoosed.map((item, index) => {
-    let div = (
-      <li key={index} onClick={() => chooseTag(item)}>
+    let li =<li key={index} onClick={() => chooseTag(item)}>
         <div className={`iconWrapper ${iconSelect===index?"selected":""}`}  >
           <Icon name={item.name} />
         </div>
         <span>{item.value}</span>
       </li>
-    )
-    return labelUsed.push(div)
+    
+    return labelUsed.push(li)
   })
 
   return (
-    <TagListWrap>
+    <ul className="tagList">
       {labelUsed}
       {/* 这是为支出列表添加标签的 */}
       {props.ifPushAddTag ? (
@@ -73,6 +44,6 @@ export default function TagList(props) {
           <span>添加</span>
         </li>
       ) : null}
-    </TagListWrap>
+    </ul>
   )
 }

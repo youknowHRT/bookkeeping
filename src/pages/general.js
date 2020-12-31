@@ -2,6 +2,7 @@ import React from 'react'
 import Datahelper from '../store/datahelper' 
 import Icon from '../components/icon'
 import './general.scss'
+import Nav from '../components/nav'
 
 export default function General(){
   let db =new Datahelper('accountBook')
@@ -44,6 +45,9 @@ export default function General(){
       <ul className="general-body-list">
         {myAccountList}
       </ul>
+    </div>
+    <div className="general-nav">
+      <Nav/>
     </div>
   </div>
 }

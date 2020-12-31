@@ -4,15 +4,26 @@ import Tabs from '../components/tabs'
 import Input from '../components/note'
 import 'antd/dist/antd.css'
 import styled from 'styled-components'
+import Nav from '../components/nav'
 // import Icon from '../components/icon'
 
 const CountMoneyWrap=styled.div`
   height:100%;
   display:flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction:column;
   .switchAddOrMinus{
-    flex:1
+    height:51%;
+    // flex:1;
+  }
+  .note{
+    height:6%;
+  }
+  .numberPadWrap{
+    height:35%
+  }
+  .navWrap{
+    height:8%
   }
 `
 export default function CountMoney(){//初始数据结构
@@ -27,7 +38,7 @@ export default function CountMoney(){//初始数据结构
 
   function handleTabs(type,defaultTag){//保存moneyType
     setBookList(
-      Object.assign(bookList,{moneyType:type,tag:defaultTag})//解决useState不会自动合并更新对象的为题！！！！！
+      Object.assign(bookList,{moneyType:type,tag:defaultTag})//解决useState不会自动合并更新对象的问题！！！！！
     )
   }
   function handleTag(tag){//保存tag
@@ -39,8 +50,8 @@ export default function CountMoney(){//初始数据结构
     setBookList({...bookList,note:inputMsg})
   }
   function handleDefault(){//初始化数据
-    console.log(bookList,'.....');
     setBookList({...bookList,note:""})
+    console.log('...countmoney49',bookList);
     // setBookList(bookList={
     //   id:"",
     //   moneyType: "-",
@@ -49,7 +60,6 @@ export default function CountMoney(){//初始数据结构
     //   tag:{name:"others",value:"其他"},
     //   createAt:"",
     // })
-    console.log(bookList,'lllll');
   }
   return <CountMoneyWrap>
     <div className="switchAddOrMinus">
@@ -58,6 +68,11 @@ export default function CountMoney(){//初始数据结构
     <div className="note">
       <Input  handleInput={handleInput} value={bookList.note}/>
     </div>
-    <NumberPad className="numberPad" value={bookList} handleDefault={handleDefault}/>
+    <div className="numberPadWrap">
+      <NumberPad  value={bookList} handleDefault={handleDefault}/>
+    </div>
+    <div className="navWrap">
+      <Nav/>
+    </div>
   </CountMoneyWrap>
 }

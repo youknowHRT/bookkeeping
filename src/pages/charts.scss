@@ -3,23 +3,19 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  background: #ccc;
+  background: #fff;
   >span{
     font-size:20px;
-    padding:15px;
+    padding:10px 15px;
     background:#ffda47;
-    display:flex;
+    // display:flex;
     line-height: 1.5;
+    height:10%
   }
   &-bar{
-    // height:46%;
-    background: #fff;
     flex:1
   }
-  &-doughnut{
-    // height:46%;
-    background: #fff;
-    bottom:0;
-    left:0
+  .navWrap{
+    height:8%;
   }
 }

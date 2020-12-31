@@ -1,0 +1,80 @@
+.totalLabel{
+  font-size: 12px;
+  &-header{
+    display: flex;
+    font-size:20px;
+    padding:20px 15px;
+    background:#ffda47;
+    line-height: 20px;
+    .iconWrap{
+      margin-right: 15px;
+      .iconfont{
+        font-size: 35px;
+      }
+    }
+  }
+  &-body{
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    .sort{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      &-name{
+        font-size: 16px;
+        color:#999
+      }
+      &-lists{
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        padding: 16px;
+        >li{
+          width: 25%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          padding:12px 0;
+          .iconWrap{
+            padding: 4px;
+            height: 4em;
+            width: 4em;
+            margin-bottom: 10px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .iconfont{
+              font-size: 2em;
+            }
+          }
+          .iconValue{
+            color: #333;
+          }
+        }
+        li:nth-child(4n+1){
+          color: #f7d680;
+        }
+        li:nth-child(4n+2){
+          color: #b84e52;
+        }
+        li:nth-child(4n+3){
+          color: #5079c8;
+        }
+        li:nth-child(4n+0){
+          color: #a4d09f;
+        };
+        .active{
+          color:red;
+          .iconWrap{
+            color: inherit;
+            border:1px solid currentColor
+          }
+        }
+      }
+    }
+  }
+}
