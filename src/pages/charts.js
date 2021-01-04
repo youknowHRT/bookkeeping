@@ -8,7 +8,7 @@ import Nav from '../components/nav'
 import './charts.scss'
 
 export default function Charts() {
-  let db = new Datahelper('accountBook')
+  const db = new Datahelper('accountBook')
   const localList = db.readData()
   const monthLastDay = dayjs().daysInMonth()
   const { year } = dateFormatter()

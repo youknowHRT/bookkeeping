@@ -12,10 +12,10 @@ import './nav.scss'
       <Link to={item}
       className={locationName===item?"active":''}
       >
-      <Icon name={navIcons[index].name} />
-      {locationName===item?<span className={'showWord'}>
-        {navIcons[index].value}
-      </span>:null}
+        <Icon name={navIcons[index].name} />
+        {locationName===item?<span className={'showWord'}>
+          {navIcons[index].value}
+        </span>:null}
       </Link>
     </li>
     return navList.push(li)

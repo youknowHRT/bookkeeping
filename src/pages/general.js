@@ -3,6 +3,7 @@ import Datahelper from '../store/datahelper'
 import Icon from '../components/icon'
 import './general.scss'
 import Nav from '../components/nav'
+import {Link} from 'react-router-dom'
 
 export default function General(){
   let db =new Datahelper('accountBook')
@@ -18,14 +19,16 @@ export default function General(){
     let date=new Date(item.createAt).toLocaleDateString()
     let amount=item.moneyType==="-"? -item.amount:item.amount
     let li =<li key={index}>
-      <div className="iconWrapper">
-        <Icon name={item.tag.name}></Icon>
-        <span>{item.tag.value}</span>
-      </div>
-      <div className="moneyAndDate">
-        <span className="moneyAndDate-money">￥{amount}</span>
-        <span className="moneyAndDate-date">{date}</span>
-      </div>
+      <Link to={`/edit/${item.id}`}>
+        <div className="iconWrapper">
+          <Icon name={item.tag.name}></Icon>
+          <span>{item.tag.value}</span>
+        </div>
+        <div className="moneyAndDate">
+          <span className="moneyAndDate-money">￥{amount}</span>
+          <span className="moneyAndDate-date">{date}</span>
+        </div>
+      </Link>
     </li>
     return myAccountList.push(li)
   })

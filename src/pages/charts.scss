@@ -8,9 +8,11 @@
     font-size:20px;
     padding:10px 15px;
     background:#ffda47;
-    // display:flex;
     line-height: 1.5;
-    height:10%
+    height:10%;
+    display: flex;
+    align-items: center;
+
   }
   &-bar{
     flex:1

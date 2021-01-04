@@ -2,7 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import '../assets/icon/iconfont.css'
 const IconWrap=styled.div`
-
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
   .iconfont{
     width: 1em;
     height: 1em;

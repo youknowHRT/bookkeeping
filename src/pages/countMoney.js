@@ -5,7 +5,6 @@ import Input from '../components/note'
 import 'antd/dist/antd.css'
 import styled from 'styled-components'
 import Nav from '../components/nav'
-// import Icon from '../components/icon'
 
 const CountMoneyWrap=styled.div`
   height:100%;

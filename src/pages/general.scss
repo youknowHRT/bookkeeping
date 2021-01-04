@@ -37,37 +37,41 @@
     &-list{
       margin:0;
       li{
-        padding:0 10px;
-        display:flex;
-        height: 3.3em;
-        line-height: 3.3em;
-        justify-content: space-between;
-        font-size: 16px;
         border-bottom:1px solid #ccc;
-        .iconWrapper{
-          display: flex;
-          >span{
-            margin-left:20px;
-            font-size: 14px;
+        a{
+          color: inherit;
+          padding:0 10px;
+          display:flex;
+          height: 3.3em;
+          line-height: 3.3em;
+          justify-content: space-between;
+          font-size: 16px;
+          
+          .iconWrapper{
+            display: flex;
+            >span{
+              margin-left:20px;
+              font-size: 14px;
+            }
+            .iconfont{
+              font-size:2em;
+            }
           }
-          .iconfont{
-            font-size:2em;
-          }
-        }
-        // &:last-child{
-        //   margin-bottom: 0;
-        // }
-        .moneyAndDate{
-          display: flex;
-          flex-direction: column;
-          &-money{
-            line-height: 2;
-            text-align: right;
-          }
-          &-date{
-            font-size: 12px;
-            color: #999;
-            line-height: 1;
+          // &:last-child{
+          //   margin-bottom: 0;
+          // }
+          .moneyAndDate{
+            display: flex;
+            flex-direction: column;
+            &-money{
+              line-height: 2;
+              text-align: right;
+            }
+            &-date{
+              font-size: 12px;
+              color: #999;
+              line-height: 1;
+            }
           }
         }
       }

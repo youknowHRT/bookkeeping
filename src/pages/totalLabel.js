@@ -9,7 +9,6 @@ export default function TotalLabel(){
   let ldb =new LabelDatahelper('labelRecord')
   // const category =['餐饮','购物','交通','居住','娱乐','医疗']
   const [category]=useState(ldb.readData())
-  console.log("🚀 ~ file: totalLabel.js ~ line 12 ~ TotalLabel ~ category", category)
   // const category =[foodTags,shoppingTags,transportTags,houseTags,entertainmentTags,medicalTags]
   // const category =ldb.readData()
   const filterChoosed=category.flat().filter((item)=> item.choose===true)
