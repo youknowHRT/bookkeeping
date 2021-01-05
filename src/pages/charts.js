@@ -103,7 +103,9 @@ export default function Charts() {
 
   return (
     <div className="chart">
-      <span>{dayjs().month()+1}月总支出</span>
+      <div className="title">
+        <span>{dayjs().month()+1}月总支出</span>
+      </div>
       <div className="chart-bar">
         <BarChart value={arrAccount()} controller={controllerHandle} />
       </div>

@@ -4,7 +4,7 @@ import './numberPad.scss'
 
 export default function NumberPad(props){
   let db =new Datahelper('accountBook')
-  let [amount,setAmount]=useState("")
+  const [amount,setAmount]=useState("")
   useEffect(()=>{
     const buttons=document.querySelectorAll("div.buttonWrap>button")//获取的是node对象，不是数组
     for(let i=0;i<buttons.length;i++){//必须遍历button挨个添加点击事件，不然点到div上会打印全部的键盘字符
@@ -12,7 +12,7 @@ export default function NumberPad(props){
         let buttonContent =e.target.textContent
         if(buttonContent==="删除"){
           if (amount.length===0)return
-          setAmount(amount=amount.substring(0,amount.length-1))
+          setAmount(amount.substring(0,amount.length-1))
         }else if(buttonContent==="清零"){
           setAmount("")
         }else if(buttonContent==='确认'){

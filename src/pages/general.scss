@@ -38,6 +38,9 @@
       margin:0;
       li{
         border-bottom:1px solid #ccc;
+        // &:last-child{
+        //   border-bottom: 0;
+        // }
         a{
           color: inherit;
           padding:0 10px;
@@ -57,9 +60,7 @@
               font-size:2em;
             }
           }
-          // &:last-child{
-          //   margin-bottom: 0;
-          // }
+          
           .moneyAndDate{
             display: flex;
             flex-direction: column;

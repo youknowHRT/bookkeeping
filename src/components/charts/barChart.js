@@ -133,7 +133,7 @@ export default function BarChart(props) {
       myChart.setOption(option)
     })
     // 使用刚指定的配置项和数据显示图表。
-  }, [])
+  },[])
 
   return <div id="barChart" />
 }

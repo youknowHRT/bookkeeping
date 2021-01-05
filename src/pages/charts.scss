@@ -4,18 +4,26 @@
   justify-content: space-between;
   height: 100%;
   background: #fff;
-  >span{
+  .title{
     font-size:20px;
     padding:10px 15px;
     background:#ffda47;
     line-height: 1.5;
     height:10%;
-    display: flex;
-    align-items: center;
-
+    display: table;
+    span{
+      height: 100%;
+      display: table-cell;
+      vertical-align: middle;
+    }
   }
   &-bar{
-    flex:1
+    // flex:1;
+    height: 41%;
+  }
+  &-doughnut{
+    // flex:1;
+    height: 41%;
   }
   .navWrap{
     height:8%;
