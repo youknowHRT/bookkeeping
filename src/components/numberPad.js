@@ -19,7 +19,6 @@ export default function NumberPad(props){
           if(amount==="0"||amount==="")return console.log('给我一个数字');
           console.log('记录一笔账');
           const newBookList={...props.value,amount}
-          console.log("🚀 ~ file: numberPad.js ~ line 39 ~ editNumber ~ newBookList", newBookList)
           db.addData(newBookList)
           props.handleDefault()
           setAmount("")

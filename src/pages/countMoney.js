@@ -50,7 +50,6 @@ export default function CountMoney(){//初始数据结构
   }
   function handleDefault(){//初始化数据
     setBookList({...bookList,note:""})
-    console.log('...countmoney49',bookList);
     // setBookList(bookList={
     //   id:"",
     //   moneyType: "-",

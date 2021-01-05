@@ -7,7 +7,11 @@ import {Link} from 'react-router-dom'
 
 export default function General(){
   let db =new Datahelper('accountBook')
-  const localList=db.readData().reverse()
+  const localList=db.readData().sort((a,b)=>{
+    return new Date(b.createAt).getTime() - new Date(a.createAt).getTime()//格式化日期并按照毫秒数排序
+  })
+  
+
   const myAccountList=[]
   const totalMoneyOfTag=(type)=>{//按照moneyType计算支出和收入
     let value=localList.filter(item=>{

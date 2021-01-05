@@ -47,4 +47,43 @@
       width: 30px;
     }
   }
+  main{
+    font-size: 16px;
+    flex: 1;
+    ul>li{
+      display: flex;
+      margin-left: 16px;
+      padding: 12px 0 12px 16px;
+      border-bottom: 1px solid #ddd;
+      .editName{
+        color:#999;
+        margin-right: 16px;
+        line-height: 2.5em;
+        height: 2.5em;
+      }
+      .editMsg{
+        line-height: 2.5em;
+        height: 2.5em;
+      }
+    }
+  }
+  footer{
+    display: flex;
+    height: 8%;
+    border-top: 1px solid #dddddd;
+    button {
+      width: 50%;
+      font-size: 14px;
+      background-color: #fff;
+      &:first-child {
+          border-right: 1px solid #dddddd;
+      }
+      &:last-child {
+          color: #b84e52;
+      }
+      &:focus{
+        outline: none;
+      }
+    }
+  }
 }
