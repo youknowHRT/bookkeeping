@@ -2,8 +2,10 @@ import { useParams, useHistory } from 'react-router-dom'
 import { useState } from 'react'
 import Datahelper from '../store/datahelper'
 import Icon from '../components/icon'
-// import dayjs from 'dayjs'
-import DatePicker from '../components/datePicker'
+// import DatePicker from '../components/datePicker'
+import { DatePicker, Space } from 'antd'
+import 'antd/dist/antd.css'
+import moment from 'moment'
 import './edit.scss'
 
 export default function Edit() {
@@ -15,13 +17,14 @@ export default function Edit() {
     return item.id === Number(params.id)
   })[0]
   const [editDate, setEditDate] = useState(getEditDate)
-
+  let defaultTime=editDate.createAt  //根据传入id的数据获取的时间
+  
   function amountHandle(e){//处理金额
     let amount=e.target.value
     setEditDate(Object.assign(editDate, {amount}))
   }
-  function handleDate(newTime) {//处理日期
-    setEditDate(Object.assign(editDate, { createAt: newTime }))
+  function onChange(date) {//处理日期
+    setEditDate(Object.assign(editDate, { createAt: date.toISOString() }))
   }
   function noteHandle(e){//处理note
     let note=e.target.value
@@ -68,11 +71,22 @@ export default function Edit() {
           </li>
           <li>
             <span className="editName">金额</span>
-            <input type="text" defaultValue={editDate.amount} onChange={amountHandle}/>
+            <input type="text"
+              defaultValue={editDate.amount}
+              onChange={amountHandle}
+              maxlength="16"
+            />
           </li>
           <li>
             <span className="editName">日期</span>
-            <DatePicker value={editDate} handleDate={handleDate} />
+            <Space direction="vertical">
+              <DatePicker 
+                onChange={onChange} 
+                defaultValue={moment(defaultTime)}
+                size="large"
+              />
+            </Space>
+            {/* <DatePicker value={editDate} handleDate={handleDate} /> */}
           </li>
           <li>
             <span className="editName">备注</span>
