@@ -74,7 +74,7 @@ export default function Edit() {
             <input type="text"
               defaultValue={editDate.amount}
               onChange={amountHandle}
-              maxlength="16"
+              maxLength="16"
             />
           </li>
           <li>

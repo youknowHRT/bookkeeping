@@ -13,7 +13,6 @@ const CountMoneyWrap=styled.div`
   flex-direction:column;
   .switchAddOrMinus{
     height:51%;
-    // flex:1;
   }
   .note{
     height:6%;
